@@ -1,37 +1,59 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 const categories = [
-  { name: 'Women Clothing', image: '/Images/first.jpg' },
-  { name: 'Men Clothing', image: '/Images/men.jpg' },
-  { name: 'Kids Clothing', image: '/Images/kids.jpg' },
-  { name: 'Footwear', image: '/Images/footware.jpg' },
-  { name: 'Jewellery', image: '/Images/jewellers.jpg' },
-  { name: 'Jackets', image: '/Images/jackets.jpg' },
-  { name: 'T-shirt', image: '/Images/tshirt.jpg' },
-  { name: 'Jeans', image: 'https://via.placeholder.com/50x50?text=Jeans' },
-  { name: 'Sunglasses', image: 'https://via.placeholder.com/50x50?text=Sunglasses' },
-  { name: 'Home Decor', image: 'https://via.placeholder.com/50x50?text=Home+Decor' },
-  { name: 'Watches', image: 'https://via.placeholder.com/50x50?text=Watches' },
-  { name: 'Home Furnishing', image: 'https://via.placeholder.com/50x50?text=Furnishing' },
-  { name: 'Toys', image: 'https://via.placeholder.com/50x50?text=Toys' },
-  { name: 'Bluetooth Speakers', image: 'https://via.placeholder.com/50x50?text=Speakers' },
-  { name: 'Kitchen Storage & Containers', image: 'https://via.placeholder.com/50x50?text=Kitchen' },
+  { name: 'Women Clothing', image: `${process.env.PUBLIC_URL}/assets/first.jpg` },
+  { name: 'Men Clothing', image: `${process.env.PUBLIC_URL}/assets/men.jpg` },
+  { name: 'Kids Clothing', image: `${process.env.PUBLIC_URL}/assets/kids.jpg` },
+  { name: 'Footwear', image: `${process.env.PUBLIC_URL}/assets/footware.jpg` },
+  { name: 'Jewellery', image: `${process.env.PUBLIC_URL}/assets/jewellers.jpg` },
+  { name: 'Jackets', image: `${process.env.PUBLIC_URL}/assets/jackets.jpg` },
+  { name: 'T-shirt', image: `${process.env.PUBLIC_URL}/assets/tshirt.jpg` },
+  { name: 'Jeans', image: 'https://www.tistabene.com/cdn/shop/files/MJS-0306C.jpg?v=1700287577&width=1080' },
+  { name: 'Sunglasses', image: 'https://imgv3.fotor.com/images/slider-image/A-clear-close-up-photo-of-a-woman.jpg' },
+  { name: 'Home Decor', image: 'https://png.pngtree.com/png-clipart/20230918/ourmid/pngtree-photo-men-doctor-physician-chest-smiling-png-image_10132895.png' },
+  { name: 'Watches', image: 'https://www.titan.co.in/dw/image/v2/BKDD_PRD/on/demandware.static/-/Sites-titan-master-catalog/default/dw34d84041/images/Titan/Catalog/1698KM02_1.jpg?sw=800&sh=800' },
+
+  { name: 'Home Furnishing', image: 'https://dukaan.b-cdn.net/700x700/webp/upload_file_service/c153799b-2716-4a2d-86a6-e8e4c2efc027/whatsapp-image-2023-02-19-at-11-46-23-pm.jpeg' },
+
+  { name: 'Toys', image: 'https://images.indianexpress.com/2019/09/toys.jpg?w=414' },
+  { name: 'Bluetooth Speakers', image: 'https://images-cdn.ubuy.co.in/64f8fabde01bf74c341c95f7-portable-bluetooth-speaker-wireless.jpg' },
+  { name: 'Kitchen Storage & Containers', image: 'https://images.livspace-cdn.com/plain/https://jumanji.livspace-cdn.com/magazine/wp-content/uploads/sites/2/2021/04/11175424/Cover-1.jpg' },
 ];
 
 const Category = () => {
   const containerRef = useRef(null);
+  const [showLeftButton, setShowLeftButton] = useState(false);
+  const [showRightButton, setShowRightButton] = useState(true); // Initially show right button
+
+  useEffect(() => {
+    const container = containerRef.current;
+
+    const handleScroll = () => {
+      // Check if there is room to scroll left
+      setShowLeftButton(container.scrollLeft > 0);
+      // Check if there is room to scroll right
+      setShowRightButton(container.scrollLeft < container.scrollWidth - container.clientWidth);
+    };
+
+    container.addEventListener('scroll', handleScroll);
+
+    // Clean up event listener on component unmount
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const scrollLeft = () => {
-    containerRef.current.scrollBy({ left: -100, behavior: 'smooth' });
+    containerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
   };
 
   const scrollRight = () => {
-    containerRef.current.scrollBy({ left: 10, behavior: 'smooth' });
+    containerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
   };
 
   return (
-    <div className="relative flex items-center mt-3 bg-gray-100 py-4 px-4 space-x-4">
-      <div className="relative w-full">
+    <div className="relative flex items-center mt-3 bg-gray-100 py-2 px-2 space-x-4">
+      <div className="relative w-full ">
         {/* Categories Container */}
         <div
           ref={containerRef}
@@ -44,29 +66,33 @@ const Category = () => {
                 <img
                   src={category.image}
                   alt={category.name}
-                  className="w-full h-full m-4 rounded-full object-cover "
+                  className="w-full h-full m-4 rounded-full object-cover"
                 />
               </div>
               <p className="text-sm text-gray-800 text-center mt-2">{category.name}</p> 
             </div>
           ))}
         </div>
-        
+
         {/* Scroll Left Button */}
-        <button
-          onClick={scrollLeft}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 bg-white rounded-l-lg  text-xl z-10"
-        >
-          &lt;
-        </button>
+        {showLeftButton && (
+          <button
+            onClick={scrollLeft}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 p-3  bg-cyan-400 rounded-r-lg text-xl z-10"
+          >
+            &lt;
+          </button>
+        )}
 
         {/* Scroll Right Button */}
-        <button 
-          onClick={scrollRight}
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 p-2 bg-white rounded-l-lg text-xl z-10"
-        >
-          &gt;
-        </button>
+        {showRightButton && (
+          <button 
+            onClick={scrollRight}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 p-3 bg-cyan-400 rounded-l-lg text-xl z-10"
+          >
+            &gt;
+          </button>
+        )}
       </div>
     </div>
   );
