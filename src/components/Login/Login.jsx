@@ -10,12 +10,16 @@ function Login() {
     setIsLoggedIn(true);
   };
 
+  console.log('isLoggedIn:', isLoggedIn); // Check current value of isLoggedIn
+
   return (
     <div>
       <button onClick={handleLogin}>Login</button>
 
-      {isLoggedIn && (
-        <Link to="/home">Go to Home (after successful login)</Link>
+      {isLoggedIn ? (
+        <p>Welcome! You are logged in.</p>
+      ) : (
+        <p>Please log in to continue.</p>
       )}
     </div>
   );

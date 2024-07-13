@@ -2,8 +2,8 @@ import React from 'react';
 
 const Banner = () => {
   return (
-    <div className="relative bg-purple-500 text-white py-10">
-      <div className="container mx-auto">
+    <div className="relative bg-purple-500 text-white py-10 ">
+      <div className="container mx-auto ">
         {/* Banner Image */}
         {/* <img
           src="/Image/first.jpg"
@@ -11,7 +11,7 @@ const Banner = () => {
           className="w-full h-72 object-cover mb-6 rounded-lg shadow-lg"
         /> */}
 
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-3 gap-6">
           {/* Rectangle Box 1 */}
           { <img src ="https://i.pinimg.com/originals/e3/12/e1/e312e1726b2be7f603f003bd9df7ebb2.jpg"
           alt="Banner"

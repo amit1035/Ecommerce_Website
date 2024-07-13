@@ -14,7 +14,7 @@ const Header = () => {
         className="w-1/2 h-9 mx-1 p-1 border border-gray-400 rounded-md bg-gray-100 shadow-inner mr-20 "
       />
       <nav className="flex space-x-4">
-        <button className="px-4 py-2">Login</button>
+      <Link to="/login" className="px-4 py-2">Login</Link>
         <button className="px-4 py-2">Cart</button>
         <button className="px-4 py-2">Become a Seller</button>
       </nav>
