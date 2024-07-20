@@ -20,7 +20,6 @@ const categories = [
   { name: 'Kitchen Storage & Containers', image: 'https://images.livspace-cdn.com/plain/https://jumanji.livspace-cdn.com/magazine/wp-content/uploads/sites/2/2021/04/11175424/Cover-1.jpg' },
 ];
 
-
 const Category = () => {
   const containerRef = useRef(null);
   const [showLeftButton, setShowLeftButton] = useState(false);

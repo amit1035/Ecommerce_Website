@@ -1,28 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
 
 function Login() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLogin = () => {
-    // Simulate login logic (replace with your actual logic)
-    console.log('Login clicked!'); // Check if this gets logged
-    setIsLoggedIn(true);
-  };
-
-  console.log('isLoggedIn:', isLoggedIn); // Check current value of isLoggedIn
-
   return (
-    <div>
-      <button onClick={handleLogin}>Login</button>
-
-      {isLoggedIn ? (
-        <p>Welcome! You are logged in.</p>
-      ) : (
-        <p>Please log in to continue.</p>
-      )}
-    </div>
-  );
+    <div className='bg-green-500 p-4 top-2 text-center '>Welcome to Swiftcard</div>
+    
+  )
 }
 
-export default Login;
+export default Login

@@ -8,7 +8,17 @@ import Contact from './components/Contact/Contact';
 import Login from './components/Login/Login';
 import Banner from './components/Banner/Banner';
 import Features from './components/Features/Features';
+import About from './components/About/About';
 
+const Home = () => {
+  return (
+    <div>
+      <Category />
+      <Features />
+      <Banner />
+    </div>
+  );
+};
 
 const App = () => {
   return (
@@ -16,14 +26,13 @@ const App = () => {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/contact" element={<Contact/>} />
-          <Route path ="/Login" element={<Login/> } />
-          <Route path="/Banner" element={<Banner/>} />
-          <Route path="/Features" element={<Features/>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/banner" element={<Banner />} />
+          <Route path="/features" element={<Features />} />
+          <Route path='/About' element={<About/>}/>
         </Routes>
-        <Category />
-        <Features/>
-        <Banner/>
         <Footer />
       </div>
     </Router>
