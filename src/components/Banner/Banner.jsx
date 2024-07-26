@@ -145,7 +145,7 @@ const Banner = () => {
 
 
       
-      <h1 className=' underline underline-offset-8 underline decoration-pink-600 text-4xl font-bold text-white  text-center  p-9'>Super Dhamaka Deals</h1>
+      <h1 className=' underline underline-offset-8 decoration-pink-600 text-4xl font-bold text-white  text-center  p-9'>Super Dhamaka Deals</h1>
 
 
 

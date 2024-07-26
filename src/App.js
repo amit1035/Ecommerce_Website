@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 import Banner from './components/Banner/Banner';
 import Features from './components/Features/Features';
 import About from './components/About/About';
+import CategoryDetail from './CategoryDetail/CategoryDetail';
 
 const Home = () => {
   return (
@@ -30,8 +31,9 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/banner" element={<Banner />} />
-          <Route path="/features" element={<Features />} />
-          <Route path='/About' element={<About/>}/>
+          <Route path="/features" element={<Features />} /> 
+          <Route path="/about" element={<About />} />
+          <Route path="/category/:name" element={<CategoryDetail />} />
         </Routes>
         <Footer />
       </div>
