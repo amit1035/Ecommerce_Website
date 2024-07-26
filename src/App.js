@@ -9,7 +9,7 @@ import Login from './components/Login/Login';
 import Banner from './components/Banner/Banner';
 import Features from './components/Features/Features';
 import About from './components/About/About';
-import CategoryDetail from './CategoryDetail/CategoryDetail';
+import CategoryDetail from './components/CategoryDetail/CategoryDetail';
 
 const Home = () => {
   return (
