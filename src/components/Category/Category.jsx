@@ -4,22 +4,20 @@ import { useNavigate } from 'react-router-dom';
 
 const categories = [
   { name: 'Women Clothing', image: `${process.env.PUBLIC_URL}/images/women.jpg` },
-  { name: 'Men Clothing', image: `${process.env.PUBLIC_URL}/images/men.jpg` },
+  { name: 'Men Clothing', image: `${process.env.PUBLIC_URL}/images/Men.jpg` },
   { name: 'Kids Clothing', image: `${process.env.PUBLIC_URL}/images/kids.jpg` },
   { name: 'Footwear', image: `${process.env.PUBLIC_URL}/images/footware.jpeg` },
   { name: 'Jewellery', image: `${process.env.PUBLIC_URL}/images/jewellers.jpg` },
-  { name: 'Jackets', image: `${process.env.PUBLIC_URL}/images/jackets.jpg` },
-  { name: 'T-shirt', image: `${process.env.PUBLIC_URL}/images/tshirt.jpg` },
-  { name: 'Jeans', image: 'https://www.tistabene.com/cdn/shop/files/MJS-0306C.jpg?v=1700287577&width=1080' },
-  { name: 'Sunglasses', image: 'https://imgv3.fotor.com/images/slider-image/A-clear-close-up-photo-of-a-woman.jpg' },
-  { name: 'Jeans', image: 'https://www.tistabene.com/cdn/shop/files/MJS-0306C.jpg?v=1700287577&width=1080' },
-  { name: 'Sunglasses', image: 'https://imgv3.fotor.com/images/slider-image/A-clear-close-up-photo-of-a-woman.jpg' },
-  { name: 'Home Decor', image: 'https://png.pngtree.com/png-clipart/20230918/ourmid/pngtree-photo-men-doctor-physician-chest-smiling-png-image_10132895.png' },
-  { name: 'Watches', image: 'https://www.titan.co.in/dw/image/v2/BKDD_PRD/on/demandware.static/-/Sites-titan-master-catalog/default/dw34d84041/images/Titan/Catalog/1698KM02_1.jpg?sw=800&sh=800' },
-  { name: 'Home Furnishing', image: 'https://dukaan.b-cdn.net/700x700/webp/upload_file_service/c153799b-2716-4a2d-86a6-e8e4c2efc027/whatsapp-image-2023-02-19-at-11-46-23-pm.jpeg' },
-  { name: 'Toys', image: 'https://images.indianexpress.com/2019/09/toys.jpg?w=414' },
-  { name: 'Bluetooth Speakers', image: 'https://images-cdn.ubuy.co.in/64f8fabde01bf74c341c95f7-portable-bluetooth-speaker-wireless.jpg' },
-  { name: 'Kitchen Storage & Containers', image: 'https://images.livspace-cdn.com/plain/https://jumanji.livspace-cdn.com/magazine/wp-content/uploads/sites/2/2021/04/11175424/Cover-1.jpg' },
+  { name: 'Accessories & more', image: `${process.env.PUBLIC_URL}/images/acces.jpg` },
+  { name: 'Beauty Wellness', image: `${process.env.PUBLIC_URL}/images/makeup.jpg` },
+  { name: 'Mobile', image: `${process.env.PUBLIC_URL}/images/Mobile.jpg` },
+  { name: 'Sports', image: `${process.env.PUBLIC_URL}/images/sport.jpg` },
+  { name: 'Home Decor', image:`${process.env.PUBLIC_URL}/images/decor.jpg` },
+  { name: 'Watches', image: `${process.env.PUBLIC_URL}/images/Watches.jpg` },
+  { name: 'Home Furnishing', image: `${process.env.PUBLIC_URL}/images/furnishing.jpg` },
+  { name: 'Toys', image: `${process.env.PUBLIC_URL}/images/toys.jpg` },
+  { name: 'Electronics', image: `${process.env.PUBLIC_URL}/images/electronics.jpg` },
+  { name: 'Kitchen Storage & Containers', image: `${process.env.PUBLIC_URL}/images/kitchen.jpg` },
 ];
 
 const Category = () => {
