@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { CartContext } from '../CartContext/CartContext';
 
 const categoryDetails = {
   'Women Clothing': {
@@ -11,7 +12,6 @@ const categoryDetails = {
       { name: 'Women Solid Casual Black Shirt', price: '29.99', image:'https://rukminim2.flixcart.com/image/850/1000/xif0q/shirt/d/f/y/l-1021-jia-original-imagggf5d59g5266.jpeg?q=90&crop=false' },
       { name: 'Women Solid Low Cut', price: '39.99',image:'https://rukminim2.flixcart.com/image/850/1000/xif0q/sock/o/h/8/free-5-low-ankle-sting-bee-original-imagjyj66ykemysf.jpeg?q=90&crop=false' },
       { name: 'Cotton Silk Saree', price: '29.99',image:'https://lajreedesigner.com/cdn/shop/files/ShrijiAvadh-SC-126-Purple_4_900x1350_crop_center@2x.jpg?v=1712670595' },
-      
     ]
   },
   'Men Clothing': {
@@ -34,6 +34,8 @@ const categoryDetails = {
 
 const CategoryDetail = () => {
   const { name } = useParams();
+  const { addToCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log('Category Name:', name);
@@ -49,6 +51,11 @@ const CategoryDetail = () => {
     return <p>Category not found</p>;
   }
 
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    navigate('/cart'); // Navigate to the Cart component
+  };
+
   return (
     <div className="container mx-auto p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -62,7 +69,7 @@ const CategoryDetail = () => {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-45 object-cover"
+                  className="w-full h-50 object-cover"
                 />
               </div>
             )}
@@ -70,10 +77,13 @@ const CategoryDetail = () => {
               <h2 className="text-xl font-semibold mb-3">{product.name}</h2>
               <p className="text-gray-700 mb-3 text-lg">{product.price}</p>
               <div className="flex justify-between">
-                <button className="bg-blue-500 text-white px-5 py-3 rounded hover:bg-blue-600 transition-colors duration-300">
+                <button className="bg-blue-500 text-white px-5 py-3 rounded hover:bg-blue-600 transition-colors duration-300 ">
                   Buy Now
                 </button>
-                <button className="bg-green-500 text-white px-5 py-3 rounded hover:bg-green-600 transition-colors duration-300">
+                <button
+                  className="bg-green-500 text-white px-5 py-3 rounded hover:bg-green-600 transition-colors duration-300"
+                  onClick={() => handleAddToCart(product)}
+                >
                   Add to Cart
                 </button>
               </div>

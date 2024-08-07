@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
@@ -10,6 +9,8 @@ import Banner from './components/Banner/Banner';
 import Features from './components/Features/Features';
 import About from './components/About/About';
 import CategoryDetail from './components/CategoryDetail/CategoryDetail';
+import Cart from './components/Cart/Cart';
+import { CartProvider } from './components/CartContext/CartContext';
 
 const Home = () => {
   return (
@@ -24,19 +25,22 @@ const Home = () => {
 const App = () => {
   return (
     <Router>
-      <div className="App">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/banner" element={<Banner />} />
-          <Route path="/features" element={<Features />} /> 
-          <Route path="/about" element={<About />} />
-          <Route path="/category/:name" element={<CategoryDetail />} />
-        </Routes>
-        <Footer />
-      </div>
+      <CartProvider>
+        <div className="App">
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/banner" element={<Banner />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/category/:name" element={<CategoryDetail />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+          <Footer />
+        </div>
+      </CartProvider>
     </Router>
   );
 };

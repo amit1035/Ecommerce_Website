@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes, FaShoppingCart } from 'react-icons/fa';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -28,7 +28,9 @@ const Header = () => {
 
       <nav className={`flex-col sm:flex-row items-center sm:space-y-0 sm:space-x-4 ${isMobileMenuOpen ? 'flex' : 'hidden'} sm:flex`}>
         <Link to="/login" className="w-full text-center px-4 py-2 text-blue-600 hover:bg-gray-200 rounded-md">Login</Link>
-        <button className="w-full text-center px-4 py-2 text-blue-600 hover:bg-gray-200 rounded-md">Cart</button>
+        <Link to="/cart" className="w-full flex items-center justify-center px-4 py-2 text-blue-600 hover:bg-gray-200 rounded-md">
+          <FaShoppingCart className="mr-2" /> Cart
+        </Link>
         <button className="w-full text-center px-4 py-2 text-blue-600 hover:bg-gray-200 rounded-md">Become a Seller</button>
       </nav>
     </header>
