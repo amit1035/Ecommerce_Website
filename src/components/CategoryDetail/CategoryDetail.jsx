@@ -11,7 +11,7 @@ const categoryDetails = {
       { name: 'Women Solid Casual Black Shirt', price: '29.99', image:'https://rukminim2.flixcart.com/image/850/1000/xif0q/shirt/d/f/y/l-1021-jia-original-imagggf5d59g5266.jpeg?q=90&crop=false' },
       { name: 'Women Solid Low Cut', price: '39.99',image:'https://rukminim2.flixcart.com/image/850/1000/xif0q/sock/o/h/8/free-5-low-ankle-sting-bee-original-imagjyj66ykemysf.jpeg?q=90&crop=false' },
       { name: 'Cotton Silk Saree', price: '29.99',image:'https://lajreedesigner.com/cdn/shop/files/ShrijiAvadh-SC-126-Purple_4_900x1350_crop_center@2x.jpg?v=1712670595' },
-      { name: 'Printed Women Multicolor T-Shirt', price: '19.99',image:"" },
+      
     ]
   },
   'Men Clothing': {
@@ -62,7 +62,7 @@ const CategoryDetail = () => {
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-45 object-cover"
                 />
               </div>
             )}
