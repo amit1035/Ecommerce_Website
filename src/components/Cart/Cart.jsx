@@ -44,8 +44,8 @@ const Cart = () => {
           <div className="border-t mt-4 pt-4">
             <h2 className="text-xl font-semibold mb-4">Price Details</h2>
             <div className="flex justify-between mb-2">
-              <span>Price (1 item)</span>
-              <span>₹{totalPrice}</span>
+              <span>Price (1 item) </span>
+              <span>₹{totalPrice}499</span>
             </div>
             <div className="flex justify-between mb-2">
               <span>Discount</span>

@@ -1,8 +1,9 @@
 import React from 'react';
+import { FaGifts } from 'react-icons/fa';
 
 const Banner = () => {
   return (
-    <div className="relative bg-purple-500 text-white py-10 ">
+    <div className="relative bg-white text-white py-10 ">
       <div className="container mx-auto ">
         {/* Banner Image */}
         {/* <img
@@ -11,154 +12,193 @@ const Banner = () => {
           className="w-full h-72 object-cover mb-6 rounded-lg shadow-lg"
         /> */}
 
-        <div className="grid grid-cols-3 gap-6">
-          {/* Rectangle Box 1 */}
-          { <img src ="https://i.pinimg.com/originals/e3/12/e1/e312e1726b2be7f603f003bd9df7ebb2.jpg"
-          alt="Banner"
-          className="w-full h-72 object-cover mb-6 rounded-lg shadow-lg"/>
-          }
-          {/* <div className="bg-gray-800 p-6 px-20 py-20 rounded-lg shadow-lg">
-            <h2 className="text-lg font-bold text-white mb-2">Exclusive Collection</h2>
-            <p className="text-sm text-gray-300">
-              Discover our latest designs and trends.
-            </p>
-          </div> */}
-    
+        <div className="grid grid-cols-4 gap-6">
+           {/* Rectangle Box 1 */}
+           <div className="relative w-full h-72 mb-6 rounded-lg shadow-lg">
+           <img 
+            src={`${process.env.PUBLIC_URL}/images/img.jpg`} 
+            alt="Banner" 
+            className="w-full h-full  object-cover object-top  rounded-lg" 
+             />
+             <div className="absolute bottom-0 left-0 w-full bg-white bg-opacity-100 p-4 rounded-b-lg">
+             <p className="font-bold text-black text-center text-xl">T-shirt <br/>from  ₹99</p>
+             </div>
+             </div>
 
+
+             
           {/* Rectangle Box 2 */}
-
-
-          {
-            <img src=" https://cdn.shopify.com/s/files/1/0086/0150/1792/files/buy_kids_clothes_online_in_India_8ec7399a-b07b-4a00-8047-1af45ef5aae5.jpg?v=1603088857"
-            alt='Womem'
-            className="w-full h-72 object-cover mb-6 rounded-lg shadow-lg"/>
-
-          }
-          {/* <div className="bg-gray-800 p-6 px-20 py-20 rounded-lg shadow-lg">
-            <h2 className="text-lg font-bold text-white mb-2">Limited Time Offer</h2>
-            <p className="text-sm text-gray-300">
-              Shop now and get up to 50% off on selected items.
-            </p>
-          </div> */}
+          <div className="relative w-full h-72 mb-6 rounded-lg shadow-lg">
+           <img 
+            src={`${process.env.PUBLIC_URL}/images/Mobile.jpg`} 
+            alt="Banner" 
+            className="w-full h-full  object-cover object-top  rounded-lg" 
+             />
+             <div className="absolute bottom-0 left-0 w-full bg-white bg-opacity-100 p-4 rounded-b-lg">
+             <p className="font-bold text-black text-center text-xl">Mobile Phones <br/>from  ₹10,999</p>
+             </div>
+             </div>
 
 
           {/* Rectangle Box 3 */}
-
-
-          <img src='https://i0.wp.com/dressesbazar.com/wp-content/uploads/2023/07/Khaadi-winter-sale-collectionbannrt.jpg?resize=1080%2C675&ssl=1' 
-          className="w-full h-72 object-cover mb-6 rounded-lg shadow-lg"/>
-          {/*  if we add image and edit than we used 
-          
-          <div className="bg-gray-800 p-6 px-20 py-20 rounded-lg shadow-lg">
-
-            <h2 className="text-lg font-bold text-white mb-2">Free Shipping</h2>
-            <p className="text-sm text-gray-300">
-              Enjoy free shipping on orders above ₹500.
-            </p>
-          </div> */}
+          <div className="relative w-full h-72 mb-6 rounded-lg shadow-lg">
+           <img 
+            src={`${process.env.PUBLIC_URL}/images/kids.jpg`} 
+            alt="Banner" 
+            className="w-full h-full  object-cover object-top  rounded-lg" 
+             />
+             <div className="absolute bottom-0 left-0 w-full bg-white bg-opacity-100 p-4 rounded-b-lg">
+             <p className="font-bold text-black text-center text-xl">Kids' Clothing <br/>from  ₹99</p>
+             </div>
+             </div>
 
 
 
           {/* Rectangle Box 4 */}
-
-
-          <img src='https://images.meesho.com/images/products/200705728/okzdr_512.jpg'
-          className="w-full h-72 object-cover mb-6 rounded-lg shadow-lg"/>
-
-          {/* <div className="bg-gray-800 p-6 px-20 py-20 rounded-lg shadow-lg">
-            <h2 className="text-lg font-bold text-white mb-2">New Arrivals</h2>
-            <p className="text-sm text-gray-300">
-              Explore our latest additions to the collection.
-            </p>
-          </div> */}
+          <div className="relative w-full h-72 mb-6 rounded-lg shadow-lg">
+           <img 
+            src={`${process.env.PUBLIC_URL}/images/jewellers.jpg`} 
+            alt="Banner" 
+            className="w-full h-full  object-cover object-top  rounded-lg" 
+             />
+             <div className="absolute bottom-0 left-0 w-full bg-white bg-opacity-100 p-4 rounded-b-lg">
+             <p className="font-bold text-black text-center text-xl">Jewellery <br/>from  ₹999</p>
+             </div>
+             </div>
 
 
 
           {/* Rectangle Box 5 */}
-
-
-          <img src='https://m.media-amazon.com/images/I/71Ss9Wd3J7L._AC_UF1000,1000_QL80_.jpg'
-          className="w-full h-72 object-cover mb-6 rounded-lg shadow-lg"/>
-          {/* <div className="bg-gray-800 p-6  px-20 py-20 rounded-lg shadow-lg">
-          
-            <h2 className="text-lg font-bold text-white mb-2">Clearance Sale</h2>
-            <p className="text-sm text-gray-300">
-              Get amazing deals on clearance items.
-            </p>
-          </div> */}
+          <div className="relative w-full h-72 mb-6 rounded-lg shadow-lg">
+           <img 
+            src={`${process.env.PUBLIC_URL}/images/makeup.jpg`} 
+            alt="Banner" 
+            className="w-full h-full  object-cover object-top  rounded-lg" 
+             />
+             <div className="absolute bottom-0 left-0 w-full bg-white bg-opacity-100 p-4 rounded-b-lg">
+             <p className="font-bold text-black text-center text-xl">Makeup <br/>from  ₹199</p>
+             </div>
+             </div>
 
 
 
           {/* Rectangle Box 6 */}
-
-
-          <img src='https://www.lavamobiles.com/images2/yuva-3-mobile-sale.jpg'
-          className='w-full h-72 object-cover md-6 rounded-lg shadow-lg' />
-          {/* <div className="bg-gray-800 p-6 px-20 py-20 rounded-lg shadow-lg">
-            <h2 className="text-lg font-bold text-white mb-2">Spring Collection</h2>
-            <p className="text-sm text-gray-300">
-              Discover fresh styles for the season.
-            </p>
-          </div> */}
-
-
+          <div className="relative w-full h-72 mb-6 rounded-lg shadow-lg">
+           <img 
+            src={`${process.env.PUBLIC_URL}/images/furnishing.jpg`} 
+            alt="Banner" 
+            className="w-full h-full  object-cover object-top  rounded-lg" 
+             />
+             <div className="absolute bottom-0 left-0 w-full bg-white bg-opacity-100 p-4 rounded-b-lg">
+             <p className="font-bold text-black text-center text-xl">Furnishings <br/>from  ₹999</p>
+             </div>
+             </div>
 
           {/* Rectangle Box 7 */}
 
 
-          <img src='https://static.toiimg.com/thumb/msid-98059685,width-1070,height-580,imgsize-404239,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg'
-          className='w-full h-72 object-cover md-6 rounded-lg shadow-lg' />
-
-          {/* <div className="bg-gray-800 p-6  px-20 py-20 rounded-lg shadow-lg">
-            <h2 className="text-lg font-bold text-white mb-2">Clearance Sale</h2>
-            <p className="text-sm text-gray-300">
-              Get amazing deals on clearance items.
-            </p>
-          </div> */}
+          <div className="relative w-full h-72 mb-6 rounded-lg shadow-lg">
+           <img 
+            src={`${process.env.PUBLIC_URL}/images/kitchen.jpg`} 
+            alt="Banner" 
+            className="w-full h-full  object-cover object-top  rounded-lg" 
+             />
+             <div className="absolute bottom-0 left-0 w-full bg-white bg-opacity-100 p-4 rounded-b-lg">
+             <p className="font-bold text-black text-center text-xl">Kitchenware  <br/>from  ₹999</p>
+             </div>
+             </div>
 
 
 
           {/* Rectangle Box 8 */}
-          <img src='https://2.imimg.com/data2/UP/MK/MY-3812101/electronics-500x500.jpg'
-          className='w-full h-72 object-cover md-6 rounded-lg shadow-lg' />
+          <div className="relative w-full h-72 mb-6 rounded-lg shadow-lg">
+           <img 
+            src={`${process.env.PUBLIC_URL}/images/electronics.jpg`} 
+            alt="Banner" 
+            className="w-full h-full  object-cover object-top  rounded-lg" 
+             />
+             <div className="absolute bottom-0 left-0 w-full bg-white bg-opacity-100 p-4 rounded-b-lg">
+             <p className="font-bold text-black text-center text-xl">Electronics <br/>from  ₹999</p>
+             </div>
+             </div>
 
-          {/* <div className="bg-gray-800 p-6  px-20 py-20 rounded-lg shadow-lg">
-            <h2 className="text-lg font-bold text-white mb-2">Clearance Sale</h2>
-            <p className="text-sm text-gray-300">
-              Get amazing deals on clearance items.
-            </p>
-          </div> */}
+              {/* Rectangle Box 9 */}
+          <div className="relative w-full h-72 mb-6 rounded-lg shadow-lg">
+           <img 
+            src={`${process.env.PUBLIC_URL}/images/toys.jpg`} 
+            alt="Banner" 
+            className="w-full h-full  object-cover object-top  rounded-lg" 
+             />
+             <div className="absolute bottom-0 left-0 w-full bg-white bg-opacity-100 p-4 rounded-b-lg">
+             <p className="font-bold text-black text-center text-xl">Toys<br/>from  ₹49</p>
+             </div>
+             </div>
+
+        {/* Rectangle Box 10 */}
+         <div className="relative w-full h-72 mb-6 rounded-lg shadow-lg">
+           <img 
+            src={`${process.env.PUBLIC_URL}/images/sport.jpg`} 
+            alt="Banner" 
+            className="w-full h-full  object-cover object-top  rounded-lg" 
+             />
+             <div className="absolute bottom-0 left-0 w-full bg-white bg-opacity-100 p-4 rounded-b-lg">
+             <p className="font-bold text-black text-center text-xl">Watches <br/>from  ₹149</p>
+             </div>
+             </div>
+
+       {/* Rectangle Box 11 */}
+         <div className="relative w-full h-72 mb-6 rounded-lg shadow-lg">
+           <img 
+            src={`${process.env.PUBLIC_URL}/images/Watches.jpg`} 
+            alt="Banner" 
+            className="w-full h-full  object-cover object-top  rounded-lg" 
+             />
+             <div className="absolute bottom-0 left-0 w-full bg-white bg-opacity-100 p-4 rounded-b-lg">
+             <p className="font-bold text-black text-center text-xl">Watches <br/>from  ₹999</p>
+             </div>
+             </div>
 
 
-          {/* Rectangle Box 9 */}
-
-          <img src='https://i.pinimg.com/736x/d2/d1/52/d2d1525e317beb1ed4f60ddfaf233205.jpg'
-          className='w-full h-72 object-cover md-6 rounded-lg shadow-lg' />
-          {/* <div className="bg-gray-800 p-6 px-20 py-20 rounded-lg shadow-lg">
-            <h2 className="text-lg font-bold text-white mb-2">Clearance Sale</h2>
-            <p className="text-sm text-gray-300">
-              Get amazing deals on clearance items.
-            </p>
-          </div> */}
+          {/* Rectangle Box 12 */}
+          <div className="relative w-full h-72 mb-6 rounded-lg shadow-lg">
+          <img 
+            src={`${process.env.PUBLIC_URL}/images/decor.jpg`} 
+            alt="Banner" 
+            className="w-full h-full  object-cover  rounded-lg" 
+             />
+             <div className="absolute bottom-0 left-0 w-full bg-white bg-opacity-100 p-4 rounded-b-lg">
+             <p className="font-bold text-black text-center text-xl">Decoration <br/>from  ₹49</p>
+             </div>
         </div>
+      </div>
       </div>
 
 
       
-      <h1 className=' underline underline-offset-8 decoration-pink-600 text-4xl font-bold text-white  text-center  p-9'>Super Dhamaka Deals</h1>
+      <div className="w-full max-w-4xl mx-auto p-4">
+       <h1 className='text-5xl font-bold text-white text-center p-6 bg-pink-600 decoration-pink-600 underline rounded-full flex items-center justify-center'>
+        Super Dhamaka Deals
+        <FaGifts className="ml-4 text-yellow-400" size={40} />
+       </h1>
+     </div>
 
 
 
-       {/* Rectangle Box 9 */}
-       <div className="grid grid-cols-3 gap-4 p-20" >
-       <img src='https://t4.ftcdn.net/jpg/03/28/84/39/360_F_328843922_Vr2R3qeHLBAJEvmtw3bTXM2HChKKQ5Km.jpg '
-       className='w-full  object-cover md-6 rounded-lg shadow-lg' />
-         <div className="bg-red-500 p-12 px-20 rounded-lg shadow-lg">
-            <h2 className="text-lg font-bold text-white mb-2">Clearance Sale</h2>
-            <p className="text-sm text-gray-300">
-              Get amazing deals on clearance items.
-            </p>
-          </div>
+
+       {/* Rectangle Box 1 */}
+       <div className="grid grid-cols-4 gap-4 p-10">
+  <img
+    src={`${process.env.PUBLIC_URL}/images/sport.jpg`}
+    className='w-full object-cover rounded-lg shadow-lg'
+    style={{ maxHeight: '150px', objectFit: 'cover' }} // Limit the height of the image
+  />
+  <div className="bg-red-500 p-6 px-10 rounded-lg shadow-lg">
+    <h2 className="text-lg font-bold text-white mb-2">Clearance Sale</h2>
+    <p className="text-sm text-gray-300">
+      Get amazing deals on clearance items.
+    </p>
+  </div>
+
       
 
 
