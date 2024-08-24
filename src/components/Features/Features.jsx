@@ -3,7 +3,7 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const promotions = [
   {
-    image: `${process.env.PUBLIC_URL}/images/Kurti2.jpg`,
+   image: require(`${process.env.PUBLIC_URL}/images/Kurti2.jpg`),
     title: "Time to Save Big is",
     price: "From ₹149",
     description: "Best-Selling Wall Clocks"
