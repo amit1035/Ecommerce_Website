@@ -1,5 +1,7 @@
 import React from 'react';
 import { FaGifts } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
 
 const Banner = () => {
   return (
@@ -8,17 +10,19 @@ const Banner = () => {
         {/* Banner Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
-          {/* Rectangle Box 1 */}
-          <div className="relative w-full h-72 rounded-lg shadow-lg">
-            <img 
-              src={`${process.env.PUBLIC_URL}/images/img.jpg`} 
-              alt="Banner" 
-              className="w-full h-full object-cover object-top rounded-lg" 
-            />
-            <div className="absolute bottom-0 left-0 w-full bg-white  p-4 rounded-b-lg ">
-              <p className="font-bold text-black text-center text-xl">T-shirt <br/>from ₹99</p>
-            </div>
-          </div>
+          {/* Rectangle Box 1 for T-shirt */}
+          <Link to="/category/T-shirt">
+         <div className="relative w-full h-72 rounded-lg shadow-lg">
+       <img 
+      src={`${process.env.PUBLIC_URL}/images/img.jpg`} 
+      alt="Banner" 
+      className="w-full h-full object-cover object-top rounded-lg" 
+    />
+    <div className="absolute bottom-0 left-0 w-full bg-white p-4 rounded-b-lg">
+      <p className="font-bold text-black text-center text-xl">T-shirt <br/>from ₹99</p>
+    </div>
+  </div>
+</Link>
 
           
           {/* Rectangle Box 2 */}

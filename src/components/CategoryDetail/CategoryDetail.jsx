@@ -2,7 +2,17 @@ import React, { useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { CartContext } from '../CartContext/CartContext';
 
+
+
 const categoryDetails = {
+  'T-shirt': {
+    description: 'A variety of T-shirts for men and women.',
+    products: [
+      { name: 'Men’s T-shirt', price: '₹299', image: `${process.env.PUBLIC_URL}/images/img.jpg`  },
+      { name: 'Jeans' , pprice : '499', image: '/images/img.jpg'},
+      // Add more T-shirt products here
+    ],
+  },
   'Women Clothing': {
     description: 'A wide range of women clothing including dresses, skirts, and more.',
     products: [
@@ -14,6 +24,7 @@ const categoryDetails = {
       { name: 'Cotton Silk Saree', price: '29.99',image:'https://lajreedesigner.com/cdn/shop/files/ShrijiAvadh-SC-126-Purple_4_900x1350_crop_center@2x.jpg?v=1712670595' },
     ]
   },
+  
   'Men Clothing': {
     description: 'A wide range of men clothing including t-shirts, shirts, jeans, and more.',
     products: [
@@ -29,6 +40,12 @@ const categoryDetails = {
       { name: 'Lower', price: '149' },
     ]
   },
+  
+  
+  
+  
+
+
   // Add other categories here
 };
 
@@ -36,7 +53,6 @@ const CategoryDetail = () => {
   const { name } = useParams();
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
-
   useEffect(() => {
     console.log('Category Name:', name);
     console.log('Category Data:', categoryDetails[name]);
