@@ -26,6 +26,7 @@ const Banner = () => {
 
           
           {/* Rectangle Box 2 */}
+          <Link to="/category/Mobile Phones">
           <div className="relative w-full h-72 rounded-lg shadow-lg">
             <img 
               src={`${process.env.PUBLIC_URL}/images/Mobile.jpg`} 
@@ -36,7 +37,7 @@ const Banner = () => {
               <p className="font-bold text-black text-center text-xl">Mobile Phones <br/>from ₹10,999</p>
             </div>
           </div>
-
+          </Link>
 
           {/* Rectangle Box 3 */}
           <div className="relative w-full h-72 rounded-lg shadow-lg">

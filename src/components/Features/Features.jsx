@@ -11,13 +11,13 @@ const promotions = [
   {
     image: `${process.env.PUBLIC_URL}/images/kids.jpg`,
     title: "Step Out in Trendy Flats",
-    price: "From ₹118",
+    price: "From ₹199",
     description: "High in Fashion & Comfort"
   },
   {
     image: `${process.env.PUBLIC_URL}/images/Kids2.jpg`,
     title: "Step Out in Trendy Flats",
-    price: "From ₹118",
+    price: "From ₹99",
     description: "High in Fashion & Comfort"
   },
   // Add more promotion objects as needed
@@ -46,7 +46,7 @@ const Banner = () => {
 
   return (
     <div className="relative bg-rose-500 text-white">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center relative p-4 md:p-0">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center relative p-4 md:p-0 ">
         <div className="relative w-full md:w-1/2 h-48 md:h-72 mb-4 md:mb-0">
           <img
             src={currentPromotion.image}

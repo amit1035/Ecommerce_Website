@@ -4,6 +4,7 @@ import { CartContext } from '../CartContext/CartContext';
 
 const Cart = () => {
   const { cartItems, removeFromCart, saveForLater, totalPrice, totalDiscount, couponsApplied } = useContext(CartContext);
+  
 
   return (
     <div className="container mx-auto p-4">

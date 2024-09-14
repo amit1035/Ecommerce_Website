@@ -9,10 +9,22 @@ const categoryDetails = {
     description: 'A variety of T-shirts for men and women.',
     products: [
       { name: 'Men’s T-shirt', price: '₹299', image: `${process.env.PUBLIC_URL}/images/img.jpg`  },
-      { name: 'Jeans' , pprice : '499', image: '/images/img.jpg'},
+      { name: 'Jeans' , price : '499', image: '/images/img.jpg'},
+      { name: 'Shirt' ,price:'99',image:'/images/img.jpg'},
+      { name: 'Shirt' ,price:'99',image:'/images/img.jpg'},
+      { name: 'Shirt' ,price:'99',image:'/images/img.jpg'},
+      { name: 'Shirt' ,price:'99',image:'/images/img.jpg'},
+      { name: 'Shirt' ,price:'99',image:'/images/img.jpg'},
+      { name: 'Shirt' ,price:'99',image:'/images/img.jpg'},
       // Add more T-shirt products here
-    ],
+    ]
   },
+    'Mobile Phones':{
+      products: [
+        { name: 'iPhone', price:50000 , image: `${process.env.PUBLIC_URL}/images/img.jpg`  },
+      ],
+    },
+  
   'Women Clothing': {
     description: 'A wide range of women clothing including dresses, skirts, and more.',
     products: [
