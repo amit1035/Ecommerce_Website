@@ -8,6 +8,7 @@ import Login from './components/Login/Login';
 import Banner from './components/Banner/Banner';
 import Features from './components/Features/Features';
 import About from './components/About/About';
+import Privacy from './components/Privacy/Privacy';
 import CategoryDetail from './components/CategoryDetail/CategoryDetail';
 import Cart from './components/Cart/Cart';
 import { CartProvider } from './components/CartContext/CartContext';
@@ -35,6 +36,7 @@ const App = () => {
             <Route path="/banner" element={<Banner />} />
             <Route path="/features" element={<Features />} />
             <Route path="/about" element={<About />} />
+            <Route path='/Privacy' element={<Privacy/>} />
             <Route path="/category/:name" element={<CategoryDetail />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>

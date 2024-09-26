@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-
 
 const categories = [
   { name: 'Women Clothing', image: `${process.env.PUBLIC_URL}/images/women.jpg` },
@@ -12,7 +12,7 @@ const categories = [
   { name: 'Beauty Wellness', image: `${process.env.PUBLIC_URL}/images/makeup.jpg` },
   { name: 'Mobile', image: `${process.env.PUBLIC_URL}/images/Mobile.jpg` },
   { name: 'Sports', image: `${process.env.PUBLIC_URL}/images/sport.jpg` },
-  { name: 'Home Decor', image:`${process.env.PUBLIC_URL}/images/decor.jpg` },
+  { name: 'Home Decor', image: `${process.env.PUBLIC_URL}/images/decor.jpg` },
   { name: 'Watches', image: `${process.env.PUBLIC_URL}/images/Watches.jpg` },
   { name: 'Home Furnishing', image: `${process.env.PUBLIC_URL}/images/furnishing.jpg` },
   { name: 'Toys', image: `${process.env.PUBLIC_URL}/images/toys.jpg` },
@@ -40,9 +40,6 @@ const Category = () => {
       container.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-
-
 
   const scrollLeft = () => {
     containerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
@@ -81,26 +78,26 @@ const Category = () => {
           ))}
         </div>
 
-
-
-
-
         {showLeftButton && (
-          <button
-            onClick={scrollLeft}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 p-3 bg-cyan-400 rounded-r-lg text-xl z-10"
-          >
-            &lt;
-          </button>
+          <div className="absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2">
+            <button
+              onClick={scrollLeft}
+              className="bg-yellow-500 text-black font-bold py-1 md:py-2 px-3 md:px-4 rounded-full"
+            >
+              <FaArrowLeft />
+            </button>
+          </div>
         )}
 
         {showRightButton && (
-          <button
-            onClick={scrollRight}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 p-3 bg-cyan-400 rounded-l-lg text-xl z-10"
-          >
-            &gt;
-          </button>
+          <div className="absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2">
+            <button
+              onClick={scrollRight}
+              className="bg-yellow-500 text-black font-bold py-1 md:py-2 px-3 md:px-4 rounded-full"
+            >
+              <FaArrowRight />
+            </button>
+          </div>
         )}
       </div>
     </div>
