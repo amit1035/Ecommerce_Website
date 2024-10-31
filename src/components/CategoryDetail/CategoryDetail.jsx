@@ -8,7 +8,7 @@ const categoryDetails = {
   'T-shirt': {
     description: 'A variety of T-shirts for men and women.',
     products: [
-      { name: 'Men’s T-shirt', price: '₹299', image: `${process.env.PUBLIC_URL}/images/img.jpg`  },
+      { id: 1, name: 'Men’s T-shirt', price: '₹299', image: `${process.env.PUBLIC_URL}/images/img.jpg`  },
       { name: 'Jeans' , price : '499', image: '/images/img.jpg'},
       { name: 'Shirt' ,price:'99',image:'/images/img.jpg'},
       { name: 'Shirt' ,price:'99',image:'/images/img.jpg'},
@@ -24,11 +24,14 @@ const categoryDetails = {
         { name: 'iPhone', price:50000 , image: `${process.env.PUBLIC_URL}/images/img.jpg`  },
       ],
     },
+
+
+  
   
   'Women Clothing': {
     description: 'A wide range of women clothing including dresses, skirts, and more.',
     products: [
-      { name: 'Women Printed kurta', price: '86% off 499', image: '//www.meenabazaar.shop/cdn/shop/files/WhatsAppImage2023-08-09at18.40.20_1_1_.jpegcopy3.jpg?v=1691826547' },
+      { id : 2,name: 'Women Printed kurta', price: '86% off 499', image: '//www.meenabazaar.shop/cdn/shop/files/WhatsAppImage2023-08-09at18.40.20_1_1_.jpegcopy3.jpg?v=1691826547' },
       { name: 'Dupatta', price: '39.99', image:'https://m.media-amazon.com/images/I/91CsJX9kbRL._AC_UY1100_.jpg' },
       { name: 'Trousers', price: '19.99', image:"https://5.imimg.com/data5/SELLER/Default/2020/9/ZN/OV/PQ/27070405/10-80-112822-80519-find-1000-02-1539934386.jpg" },
       { name: 'Women Solid Casual Black Shirt', price: '29.99', image:'https://rukminim2.flixcart.com/image/850/1000/xif0q/shirt/d/f/y/l-1021-jia-original-imagggf5d59g5266.jpeg?q=90&crop=false' },
@@ -37,10 +40,13 @@ const categoryDetails = {
     ]
   },
   
+
+
+
   'Men Clothing': {
     description: 'A wide range of men clothing including t-shirts, shirts, jeans, and more.',
     products: [
-      { name: 'T-Shirt', price: '249', image: '/images/Women-Clothing/first.jpg' },
+      {  name: 'T-Shirt', price: '249', image: '/images/Women-Clothing/first.jpg' },
       { name: 'Shirt', price: '399' },
       { name: 'Jeans', price: '499' },
       { name: 'Lower', price: '149' },
