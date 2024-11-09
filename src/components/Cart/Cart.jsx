@@ -10,7 +10,6 @@ const Cart = () => {
     decreaseQuantity,
     totalPrice,
     totalDiscount,
-    couponsApplied,
   } = useContext(CartContext);
 
   return (
@@ -33,7 +32,7 @@ const Cart = () => {
               <div className="flex-grow">
                 <h2 className="text-xl">{item.name}</h2>
                 <p className="text-gray-700">Size: {item.size}</p>
-                <p className="text-lg ">₹{item.price}</p>
+                <p className="text-lg ">₹{item.price * item.quantity}</p>
                 <div className="flex items-center mt-2">
                   {/* Decrease Quantity Button */}
                   <button
@@ -75,28 +74,24 @@ const Cart = () => {
           <div className="border-t mt-4 pt-4">
             <h2 className="text-xl font-semibold mb-4">Price Details</h2>
             <div className="flex justify-between mb-2">
-              <span>Price ({cartItems.length} items)</span>
+              <span>Price ({cartItems.length} item)</span>
               <span>₹{totalPrice}</span>
             </div>
             <div className="flex justify-between mb-2">
               <span>Discount</span>
-              <span>- ₹{totalDiscount}</span>
-            </div>
-            <div className="flex justify-between mb-2">
-              <span>Coupons for you</span>
-              <span>- ₹{couponsApplied}</span>
+              <span>-₹{totalDiscount}</span>
             </div>
             <div className="flex justify-between mb-4">
               <span>Delivery Charges</span>
               <span>Free</span>
             </div>
-            <div className="flex justify-between font-bold">
-              <span>Total Customer Price</span>
-              <span>₹{totalPrice - totalDiscount - couponsApplied}</span>
+            <div className='flex justify-between mb-2 font-bold '>
+            <span>Total Price </span>
+            <span>₹{totalPrice}</span>
             </div>
             <div className="mt-4">
               <p className="text-green-600">
-                You will save ₹{totalDiscount + couponsApplied} on this order
+                You will save ₹{totalDiscount} on this order
               </p>
             </div>
           </div>

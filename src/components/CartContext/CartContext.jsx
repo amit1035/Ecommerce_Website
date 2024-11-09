@@ -8,56 +8,67 @@ export const CartProvider = ({ children }) => {
   const [totalDiscount, setTotalDiscount] = useState(0);
   const [couponsApplied, setCouponsApplied] = useState(0);
 
-  useEffect(() => {
-    const price = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const updateTotals = (items) => {
+    const price = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const discount = items.reduce((acc, item) => acc + (item.discount || 0) * item.quantity, 0);
     setTotalPrice(price);
-
-    const discount = cartItems.reduce((acc, item) => acc + (item.discount || 0) * item.quantity, 0);
     setTotalDiscount(discount);
+  };
 
-    setCouponsApplied(0); // Customize based on your coupon logic
-
-    console.log('Total Price:', price); // Debugging
-    console.log('Cart Items:', cartItems); // Debugging
+  useEffect(() => {
+    updateTotals(cartItems);
+    setCouponsApplied(0);
+    console.log('Total Price:', totalPrice);
+    console.log('Cart Items:', cartItems);
   }, [cartItems]);
 
   const addToCart = (item) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find(cartItem => cartItem.id === item.id);
       if (existingItem) {
-        return prevItems.map(cartItem =>
+        const updatedItems = prevItems.map(cartItem =>
           cartItem.id === item.id
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem
         );
+        updateTotals(updatedItems);
+        return updatedItems;
       } else {
-        return [...prevItems, { ...item, quantity: 1 }];
+        const updatedItems = [...prevItems, { ...item, quantity: 1 }];
+        updateTotals(updatedItems);
+        return updatedItems;
       }
     });
   };
 
   const removeFromCart = (itemToRemove) => {
-    setCartItems((prevItems) =>
-      prevItems.filter(item => item.id !== itemToRemove.id)
-    );
+    setCartItems((prevItems) => {
+      const updatedItems = prevItems.filter(item => item.id !== itemToRemove.id);
+      updateTotals(updatedItems);
+      return updatedItems;
+    });
   };
 
   const increaseQuantity = (item) => {
-    setCartItems((prevItems) =>
-      prevItems.map(cartItem =>
+    setCartItems((prevItems) => {
+      const updatedItems = prevItems.map(cartItem =>
         cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
-      )
-    );
+      );
+      updateTotals(updatedItems);
+      return updatedItems;
+    });
   };
 
   const decreaseQuantity = (item) => {
-    setCartItems((prevItems) =>
-      prevItems.map(cartItem =>
+    setCartItems((prevItems) => {
+      const updatedItems = prevItems.map(cartItem =>
         cartItem.id === item.id && cartItem.quantity > 1
           ? { ...cartItem, quantity: cartItem.quantity - 1 }
           : cartItem
-      )
-    );
+      );
+      updateTotals(updatedItems);
+      return updatedItems;
+    });
   };
 
   return (
