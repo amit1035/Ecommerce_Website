@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../CartContext/CartContext';
-import PlaceOrder from '../Pages/PlaceOrder';
 
 const Cart = () => {
   const {
@@ -13,7 +12,6 @@ const Cart = () => {
     totalPrice,
     totalDiscount,
   } = useContext(CartContext);
-
   const navigate = useNavigate();
 
   return (
@@ -30,12 +28,13 @@ const Cart = () => {
                   src={item.image || 'https://via.placeholder.com/150'}
                   alt={item.name}
                   className="w-full h-full object-cover"
-                />
+                />;
               </div>
               <div className="flex-grow">
                 <h2 className="text-xl">{item.name}</h2>
-                <p className="text-gray-700">Size: {item.size}</p>
-                <p className="text-lg ">₹{item.price * item.quantity}</p>
+                <p className="text-gray-700">Size: {item.size || 'M'}</p>
+                <p className="text-lg">₹{item.price * item.quantity}</p>
+
                 <div className="flex items-center mt-2">
                   <button
                     className="bg-gray-300 text-black px-2 py-1 rounded mr-2 hover:bg-gray-400"
@@ -51,15 +50,16 @@ const Cart = () => {
                     +
                   </button>
                 </div>
+
                 <div className="mt-2">
                   <button
-                    className="bg-yellow-500 text-white px-4 py-2 rounded mr-2 hover:bg-yellow-600 text-center"
+                    className="bg-yellow-500 text-white px-4 py-2 rounded mr-2 hover:bg-yellow-600"
                     onClick={() => saveForLater(item)}
                   >
-                    Save for later
+                    Save for Later
                   </button>
                   <button
-                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 text-center"
+                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
                     onClick={() => removeFromCart(item)}
                   >
                     Remove
@@ -69,6 +69,7 @@ const Cart = () => {
             </div>
           ))}
 
+          {/* Price Details Section */}
           <div className="border-t mt-4 pt-4">
             <h2 className="text-xl font-semibold mb-4">Price Details</h2>
             <div className="flex justify-between mb-2">
@@ -92,7 +93,7 @@ const Cart = () => {
                 You will save ₹{totalDiscount} on this order
               </p>
             </div>
-            <div className=" flex justify-end mt-6">
+            <div className="flex justify-end mt-6">
               <button
                 className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
                 onClick={() => navigate('/placeorder')}
