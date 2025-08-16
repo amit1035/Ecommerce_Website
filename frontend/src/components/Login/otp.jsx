@@ -1,48 +1,48 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useRef, useEffect } from 'react';
 
-const Otp = () => {
-  const [otp, setOtp] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
+const Otp = ({ otp, setOtp, handleVerifyOtp, error, message, loading }) => {
+  const otpInputRef = useRef(null);
 
-  const handleVerify = () => {
-    const confirmationResult = window.confirmationResult;
-    if (confirmationResult) {
-      confirmationResult.confirm(otp)
-        .then((result) => {
-          alert("Phone verified successfully!");
-          // You can store user token or redirect
-          navigate('/dashboard'); // or home
-        })
-        .catch(() => {
-          setError("Invalid OTP. Please try again.");
-        });
-    } else {
-      setError("OTP session expired. Please try again.");
+  useEffect(() => {
+    if (otpInputRef.current) {
+      otpInputRef.current.focus();
     }
-  };
+  }, []);
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100'>
-      <div className='w-full max-w-md p-8 bg-white shadow-md rounded'>
-        <h2 className='text-2xl font-bold mb-6 text-center'>Enter OTP</h2>
-        <input
-          type='text'
-          value={otp}
-          onChange={(e) => setOtp(e.target.value)}
-          placeholder='Enter OTP'
-          className='px-4 py-2 border border-gray-300 rounded w-full mb-4'
-        />
-        {error && <p className='text-red-500 text-sm'>{error}</p>}
-        <button
-          onClick={handleVerify}
-          className='w-full py-2 bg-blue-600 text-white rounded'
-        >
-          Verify
-        </button>
+    <>
+      <div className="mb-6 animate-fade-in">
+        <label className="block mb-2 text-sm font-semibold text-gray-700">Enter OTP</label>
+        <div className="flex items-center border rounded-md overflow-hidden transition focus-within:ring-2 focus-within:ring-blue-400">
+          <div className="bg-green-100 px-4 py-3 text-green-700 font-semibold border-r border-green-300 text-sm">🔐</div>
+          <input
+            type="tel"
+            aria-label="One Time Password input"
+            placeholder="Enter 6-digit OTP"
+            value={otp}
+            onChange={(e) => {
+              const val = e.target.value.replace(/\D/g, '').slice(0, 6);
+              setOtp(val);
+              if (val.length === 6) handleVerifyOtp(); // optional auto-submit
+            }}
+            maxLength={7}
+            ref={otpInputRef}
+            className="flex-1 px-3 py-3 text-sm focus:outline-none"
+          />
+        </div>
       </div>
-    </div>
+
+      {message && <p className="mb-4 text-green-600 text-center font-medium animate-fade-in">{message}</p>}
+      {error && <p className="mb-4 text-red-600 text-center font-medium animate-shake">{error}</p>}
+
+      <button
+        onClick={handleVerifyOtp}
+        disabled={loading}
+        className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition-all disabled:opacity-50 disabled:cursor-not-allowed active:animate-input-press"
+      >
+        {loading ? 'Verifying OTP...' : 'Verify OTP'}
+      </button>
+    </>
   );
 };
 

@@ -12,9 +12,12 @@ import Privacy from './components/Pages/Privacy';
 import PlaceOrder from './components/Pages/PlaceOrder';
 import CategoryDetail from './components/CategoryDetail/CategoryDetail';
 import Cart from './components/Cart/Cart';
-import { CartProvider } from './components/CartContext/CartContext';
+import { CartProvider } from './components/Context/CartContext';
 import Otp from './components/Login/otp';
-
+import CompleteLogin from './components/Login/CompleteLogin';
+import Logout from './components/Login/profile_details/logout';
+import ProductDetail from './components/product/product_Details';
+import CategoryPage from './components/Banner/CategoryPage';
 const Home = () => {
   return (
     <div>
@@ -32,7 +35,7 @@ const App = () => {
         <div className="App">
           <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/banner" element={<Banner />} />
@@ -43,7 +46,11 @@ const App = () => {
             <Route path="/category/:name" element={<CategoryDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path='/otp' element ={<Otp />} />
-          </Routes>
+            <Route path='/Completelogin' element ={<CompleteLogin />} />
+            <Route path='/logout' element ={<Logout />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/category/:categoryName" element={<CategoryPage /> } />
+           </Routes>
           <Footer />
         </div>
       </CartProvider>

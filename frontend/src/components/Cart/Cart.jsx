@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CartContext } from '../CartContext/CartContext';
+import { CartContext } from '../Context/CartContext';
 
 const Cart = () => {
   const {
@@ -28,12 +28,14 @@ const Cart = () => {
                   src={item.image || 'https://via.placeholder.com/150'}
                   alt={item.name}
                   className="w-full h-full object-cover"
-                />;
+                />
               </div>
               <div className="flex-grow">
                 <h2 className="text-xl">{item.name}</h2>
                 <p className="text-gray-700">Size: {item.size || 'M'}</p>
-                <p className="text-lg">₹{item.price * item.quantity}</p>
+                <p className="text-lg">
+                  ₹{(Number(item.price) * item.quantity).toFixed(2)}
+                </p>
 
                 <div className="flex items-center mt-2">
                   <button
@@ -74,11 +76,11 @@ const Cart = () => {
             <h2 className="text-xl font-semibold mb-4">Price Details</h2>
             <div className="flex justify-between mb-2">
               <span>Price ({cartItems.length} item{cartItems.length > 1 ? 's' : ''})</span>
-              <span>₹{totalPrice}</span>
+              <span>₹{totalPrice.toFixed(2)}</span>
             </div>
             <div className="flex justify-between mb-2">
               <span>Discount</span>
-              <span>-₹{totalDiscount}</span>
+              <span>-₹{totalDiscount.toFixed(2)}</span>
             </div>
             <div className="flex justify-between mb-4">
               <span>Delivery Charges</span>
@@ -86,11 +88,11 @@ const Cart = () => {
             </div>
             <div className="flex justify-between mb-2 font-bold">
               <span>Total Price</span>
-              <span>₹{totalPrice}</span>
+              <span>₹{totalPrice.toFixed(2)}</span>
             </div>
             <div className="mt-4">
               <p className="text-green-600">
-                You will save ₹{totalDiscount} on this order
+                You will save ₹{totalDiscount.toFixed(2)} on this order
               </p>
             </div>
             <div className="flex justify-end mt-6">

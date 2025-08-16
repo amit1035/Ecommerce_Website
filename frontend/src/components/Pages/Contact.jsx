@@ -33,7 +33,7 @@ const Contact = () => {
       <div className="text-center mb-8">
         <p><strong>Customer Support:</strong></p>
         <p>Email: support@swiftcard.com</p>
-        <p>Phone: +91-123-456-7890</p>
+        <p>Phone: +91 7479474629</p>
         <p>Working Hours: Monday to Saturday, 9:00 AM to 6:00 PM IST</p>
       </div>
       
@@ -41,7 +41,7 @@ const Contact = () => {
         <p><strong>Our Address:</strong></p>
         <p>SwiftCard Pvt. Ltd.</p>
         <p>123, E-commerce Street, Tech Park</p>
-        <p>Bangalore, Karnataka, India - 560001</p>
+        <p>Greater Noida</p>
       </div>
       
       <div className="text-center mb-8">

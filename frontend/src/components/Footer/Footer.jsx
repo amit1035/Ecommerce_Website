@@ -48,7 +48,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="text-center mt-10 border-t border-gray-700 pt-5">
-        <p className="text-sm md:text-base">&copy; 2024 SwiftCard. All rights reserved.</p>
+        <p className="text-sm md:text-base">&copy; 2025 Amit Gupta. All rights reserved.</p>
       </div>
     </footer>
   );
