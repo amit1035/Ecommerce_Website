@@ -3,7 +3,8 @@ import { FaFire } from "react-icons/fa";
 import BannerCard from './layout/banner_card';
 import ClearanceCard from './layout/clearance_card';
 
-const BASE_URL = 'http://localhost:4000';
+// Use environment variable for backend API base URL
+const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Banner = () => {
   const [bannerItems, setBannerItems] = useState([]);
@@ -12,10 +13,13 @@ const Banner = () => {
   useEffect(() => {
     // Fetch both banner & clearance data in one call
     fetch(`${BASE_URL}/api/home-data`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to fetch home data");
+        return res.json();
+      })
       .then(data => {
-        setBannerItems(data.banners);
-        setClearanceItems(data.clearance);
+        setBannerItems(data.banners || []);
+        setClearanceItems(data.clearance || []);
       })
       .catch(err => console.error("Error fetching data:", err));
   }, []);
