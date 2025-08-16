@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const CategoryPage = () => {
-  const { name } = useParams(); // URL se category name milega
+  const { name } = useParams(); 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const API_BASE_URL = process.env.REACT_APP_BACKEND_URL;
+
   useEffect(() => {
-    fetch(`http://localhost:4000/api/categories/${name}/products`)
+    fetch(`${API_BASE_URL}/api/categories/${name}/products`)
       .then(res => res.json())
       .then(data => {
         setProducts(data);
@@ -17,7 +19,7 @@ const CategoryPage = () => {
         console.error("Error fetching products:", err);
         setLoading(false);
       });
-  }, [name]);
+  }, [name, API_BASE_URL]);
 
   if (loading) {
     return <p>Loading products...</p>;
