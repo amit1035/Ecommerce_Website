@@ -5,21 +5,41 @@ const CategoryPage = () => {
   const { name } = useParams(); // URL se category name milega
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const BASE_URL = process.env.REACT_APP_API_URL;
+const BASE_URL = process.env.REACT_APP_API_URL;
 
+useEffect(() => {
+  if (!BASE_URL) {
+    console.error("BASE_URL is not defined. Check your .env file.");
+    return;
+  }
 
-  useEffect(() => {
+  let isMounted = true; // to prevent state updates if unmounted
+
+  setLoading(true);
+
   fetch(`${BASE_URL}/api/categories/${name}/products`)
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+      return res.json();
+    })
     .then(data => {
-      setProducts(data);
-      setLoading(false);
+      if (isMounted) {
+        setProducts(data);
+        setLoading(false);
+      }
     })
     .catch(err => {
       console.error("Error fetching products:", err);
-      setLoading(false);
+      if (isMounted) setLoading(false);
     });
-}, [name]);
+
+  return () => {
+    isMounted = false; // cleanup
+  };
+}, [name, BASE_URL]);
+
 
 
   if (loading) {

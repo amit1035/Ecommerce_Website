@@ -7,22 +7,31 @@ const CategoryDetail = () => {
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
   const [category, setCategory] = useState(null);
-  const BASE_URL = process.env.REACT_APP_API_URL;
 
 
- useEffect(() => {
-  if (name) {
-    document.title = `${name} - SwiftCard`;
 
-    fetch(`${BASE_URL}/api/categories/${name}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Fetched Data:", data);
-        setCategory(data);
-      })
-      .catch((error) => console.error("Error fetching category:", error));
-  }
-}, [name]);
+const BASE_URL = process.env.REACT_APP_API_URL;
+
+useEffect(() => {
+  if (!name) return;
+
+  document.title = `${name} - SwiftCard`;
+
+  const fetchCategory = async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/api/categories/${name}`);
+      if (!res.ok) throw new Error("Failed to fetch category");
+      const data = await res.json();
+      console.log("Fetched Data:", data);
+      setCategory(data);
+    } catch (error) {
+      console.error("Error fetching category:", error);
+    }
+  };
+
+  fetchCategory();
+}, [name, BASE_URL]);
+;
 
 
   const handleAddToCart = (product) => {

@@ -21,26 +21,28 @@ const Header = () => {
 
   const { user, logout } = useAuth();
   const { totalQuantity } = useContext(CartContext);
-  const BASE_URL = process.env.REACT_APP_API_URL;
+const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
 
-
- // 🔹 Fetch all products for search
 useEffect(() => {
-  fetch(`${BASE_URL}/api/products`)
-    .then((res) => {
-      if (!res.ok) throw new Error("Failed to fetch products");
-      return res.json();
-    })
-    .then((data) => {
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/api/products`);
+      if (!res.ok) {
+        throw new Error(`Failed to fetch products: ${res.status} ${res.statusText}`);
+      }
+      const data = await res.json();
       setProducts(data);
+    } catch (err) {
+      console.error("Error fetching products:", err);
+      setError("Failed to load products. Please try again later.");
+    } finally {
       setLoading(false);
-    })
-    .catch((err) => {
-      console.error(err);
-      setError("Failed to load products");
-      setLoading(false);
-    });
-}, []);
+    }
+  };
+
+  fetchProducts();
+}, [BASE_URL]);  // ✅ dependency added in case API URL changes
 
 
   // 🔹 Search filter logic with debounce
