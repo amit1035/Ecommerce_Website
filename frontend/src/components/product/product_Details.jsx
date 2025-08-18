@@ -13,24 +13,27 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [error, setError] = useState(null);
   const [selectedSize, setSelectedSize] = useState("M");
+  const BASE_URL = process.env.REACT_APP_API_URL;
+
 
   useEffect(() => {
-    if (id) {
-      fetch(`http://localhost:4000/api/products/${id}`)
-        .then((res) => {
-          if (!res.ok) throw new Error("Failed to fetch product");
-          return res.json();
-        })
-        .then((data) => {
-          setProduct(data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          setError(err.message);
-          setLoading(false);
-        });
-    }
-  }, [id]);
+  if (id) {
+    fetch(`${BASE_URL}/api/products/${id}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch product");
+        return res.json();
+      })
+      .then((data) => {
+        setProduct(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }
+}, [id]);
+
 
   const handleAddToCart = () => {
     if (!product) return;

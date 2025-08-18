@@ -5,19 +5,22 @@ const CategoryPage = () => {
   const { name } = useParams(); // URL se category name milega
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const BASE_URL = process.env.REACT_APP_API_URL;
+
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/categories/${name}/products`)
-      .then(res => res.json())
-      .then(data => {
-        setProducts(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error("Error fetching products:", err);
-        setLoading(false);
-      });
-  }, [name]);
+  fetch(`${BASE_URL}/api/categories/${name}/products`)
+    .then(res => res.json())
+    .then(data => {
+      setProducts(data);
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error("Error fetching products:", err);
+      setLoading(false);
+    });
+}, [name]);
+
 
   if (loading) {
     return <p>Loading products...</p>;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-const BASE_URL = "http://localhost:4000";
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const promotions = [
   {
