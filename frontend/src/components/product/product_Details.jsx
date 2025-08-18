@@ -3,6 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import { CartContext } from "../Context/CartContext";
 
+// ✅ Move BASE_URL outside the component so it never changes
+const BASE_URL = process.env.REACT_APP_API_URL;
+
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -17,22 +20,23 @@ const ProductDetail = () => {
 
 
   useEffect(() => {
-  if (id) {
-    fetch(`${BASE_URL}/api/products/${id}`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch product");
-        return res.json();
-      })
-      .then((data) => {
-        setProduct(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }
-}, [id]);
+    if (id) {
+      fetch(`${BASE_URL}/api/products/${id}`)
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to fetch product");
+          return res.json();
+        })
+        .then((data) => {
+          setProduct(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setLoading(false);
+        });
+    }
+  }, [id]); // ✅ BASE_URL no longer required here
+
 
 
   const handleAddToCart = () => {
