@@ -22,24 +22,23 @@ const Header = () => {
   const { user, logout } = useAuth();
   const { totalQuantity } = useContext(CartContext);
 
- // 🔹 Fetch all products for search
-useEffect(() => {
-  fetch(`${process.env.REACT_APP_API_URL}/api/products`)
-    .then((res) => {
-      if (!res.ok) throw new Error("Failed to fetch products");
-      return res.json();
-    })
-    .then((data) => {
-      setProducts(data);
-      setLoading(false);
-    })
-    .catch((err) => {
-      console.error(err);
-      setError("Failed to load products");
-      setLoading(false);
-    });
-}, []);
-
+  // 🔹 Fetch all products for search
+  useEffect(() => {
+    fetch("http://localhost:4000/api/products")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch products");
+        return res.json();
+      })
+      .then((data) => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Failed to load products");
+        setLoading(false);
+      });
+  }, []);
 
   // 🔹 Search filter logic with debounce
   useEffect(() => {

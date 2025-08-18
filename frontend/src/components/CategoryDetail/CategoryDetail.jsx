@@ -8,20 +8,18 @@ const CategoryDetail = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState(null);
 
-useEffect(() => {
-  if (name) {
-    document.title = `${name} - SwiftCard`;
-
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/categories/${name}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Fetched Data:", data);
-        setCategory(data);
-      })
-      .catch((error) => console.error("Error fetching category:", error));
-  }
-}, [name]);
-
+  useEffect(() => {
+    if (name) {
+      document.title = `${name} - SwiftCard`;
+      fetch(`http://localhost:4000/api/categories/${name}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Fetched Data:", data);
+          setCategory(data);
+        })
+        .catch((error) => console.error("Error fetching category:", error));
+    }
+  }, [name]);
 
   const handleAddToCart = (product) => {
     const productWithParsedPrice = {

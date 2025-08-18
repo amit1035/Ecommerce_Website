@@ -8,17 +8,14 @@ const Category = () => {
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
   const navigate = useNavigate();
-
-
   
-// Fetch categories from backend
-useEffect(() => {
-  fetch(`${process.env.REACT_APP_API_URL}/api/categories`)
-    .then((res) => res.json())
-    .then((data) => setCategories(data))
-    .catch((error) => console.error("Error fetching categories:", error));
-}, []);
-
+  // Fetch categories from backend
+  useEffect(() => {
+    fetch("http://localhost:4000/api/categories")
+      .then((res) => res.json())
+      .then((data) => setCategories(data))
+      .catch((error) => console.error("Error fetching categories:", error));
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
