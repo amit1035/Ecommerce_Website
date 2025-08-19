@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import { CartContext } from "../Context/CartContext";
 
-// ✅ Move BASE_URL outside the component so it never changes
+// ✅ Define BASE_URL once, outside the component
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const ProductDetail = () => {
@@ -16,8 +16,6 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [error, setError] = useState(null);
   const [selectedSize, setSelectedSize] = useState("M");
-  const BASE_URL = process.env.REACT_APP_API_URL;
-
 
   useEffect(() => {
     if (id) {
@@ -35,9 +33,7 @@ const ProductDetail = () => {
           setLoading(false);
         });
     }
-  }, [id]); // ✅ BASE_URL no longer required here
-
-
+  }, [id]); // ✅ BASE_URL is static, no need in deps
 
   const handleAddToCart = () => {
     if (!product) return;
@@ -56,7 +52,6 @@ const ProductDetail = () => {
   };
 
   const handleBuyNow = () => {
-    // Example: Add to cart and navigate to checkout page
     if (!product) return;
 
     addToCart({
@@ -69,16 +64,12 @@ const ProductDetail = () => {
       size: selectedSize,
     });
 
-    navigate("/checkout"); // Make sure you have this route
+    navigate("/checkout");
   };
 
   const onQuantityChange = (e) => {
     const val = parseInt(e.target.value);
-    if (isNaN(val) || val < 1) {
-      setQuantity(1);
-    } else {
-      setQuantity(val);
-    }
+    setQuantity(isNaN(val) || val < 1 ? 1 : val);
   };
 
   if (loading) {
@@ -107,7 +98,6 @@ const ProductDetail = () => {
     return <p className="text-center text-lg font-semibold">Product not found.</p>;
   }
 
-  // Default to 4 stars and 120 reviews if no data
   const ratingStars = 4;
   const reviewCount = 120;
 
