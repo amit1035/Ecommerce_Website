@@ -22,9 +22,10 @@ const frontendPath = path.join(__dirname, "frontend/build");
 app.use(express.static(frontendPath));
 
 // Catch-all (React Router fix)
-app.get("/*", (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
 });
+
 
 // ------------------------------------------
 
