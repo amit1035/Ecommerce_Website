@@ -11,13 +11,17 @@ const port = process.env.PORT || 4000;
 app.use(cors());
 app.use(express.json());
 
-// Serve images from public folder
+// Serve images from public/images
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 // API routes
 app.use("/api", apiRoutes);
 
-// Start server
+// Default route for health check
+app.get("/", (req, res) => {
+  res.send("✅ Backend is running! Use /api for API routes.");
+});
+
 app.listen(port, () => {
-  console.log(`✅ Server running at http://localhost:${port} or on Render`);
+  console.log(`✅ Server running on port ${port}`);
 });
