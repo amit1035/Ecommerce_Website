@@ -17,10 +17,17 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 // API routes
 app.use("/api", apiRoutes);
 
-// Default route for health check
-app.get("/", (req, res) => {
-  res.send("✅ Backend is running! Use /api for API routes.");
+// ---------- Serve React frontend ----------
+// Make sure you build your React app before deployment: npm run build
+const frontendPath = path.join(__dirname, "frontend/build");
+app.use(express.static(frontendPath));
+
+// Catch-all route → send index.html (for React Router)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
 });
+
+// ------------------------------------------
 
 app.listen(port, () => {
   console.log(`✅ Server running on port ${port}`);
