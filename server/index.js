@@ -18,12 +18,11 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use("/api", apiRoutes);
 
 // ---------- Serve React frontend ----------
-// Make sure you build your React app before deployment: npm run build
 const frontendPath = path.join(__dirname, "frontend/build");
 app.use(express.static(frontendPath));
 
-// Catch-all route → send index.html (for React Router)
-app.get("*", (req, res) => {
+// Catch-all (React Router fix)
+app.get("/*", (req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
 });
 
