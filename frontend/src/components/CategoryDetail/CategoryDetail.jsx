@@ -8,37 +8,37 @@ const CategoryDetail = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState(null);
 
+  const BASE_URL = process.env.REACT_APP_API_URL;
 
+  useEffect(() => {
+    if (!name) return;
 
-const BASE_URL = process.env.REACT_APP_API_URL;
+    document.title = `${name} - SwiftCard`;
 
-useEffect(() => {
-  if (!name) return;
-
-  document.title = `${name} - SwiftCard`;
-
-  const fetchCategory = async () => {
-    try {
-      const res = await fetch(`${BASE_URL}/api/categories/${name}`);
-      if (!res.ok) throw new Error("Failed to fetch category");
-      const data = await res.json();
-      console.log("Fetched Data:", data);
-      setCategory(data);
-    } catch (error) {
-      console.error("Error fetching category:", error);
+    if (!BASE_URL) {
+      console.error("BASE_URL is not defined. Check your .env file.");
+      return;
     }
-  };
 
-  fetchCategory();
-}, [name, BASE_URL]);
-;
+    const fetchCategory = async () => {
+      try {
+        const res = await fetch(`${BASE_URL}/api/categories/${name}`);
+        if (!res.ok) throw new Error(`Failed to fetch category. Status: ${res.status}`);
+        const data = await res.json();
+        setCategory(data);
+      } catch (error) {
+        console.error("Error fetching category:", error);
+      }
+    };
 
+    fetchCategory();
+  }, [name, BASE_URL]);
 
   const handleAddToCart = (product) => {
     const productWithParsedPrice = {
       ...product,
       price: parseFloat(product.price) || 0, // ensure numeric
-      quantity: 1, // set default quantity
+      quantity: 1,
     };
     addToCart(productWithParsedPrice);
     navigate("/cart");
@@ -55,7 +55,7 @@ useEffect(() => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">
-        {category?.description || "Category"}
+        {category.description || "Category"}
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -64,11 +64,11 @@ useEffect(() => {
             <div
               key={product.id}
               className="border rounded-lg shadow-lg p-4 hover:shadow-xl transition transform hover:scale-105 bg-white cursor-pointer"
-              onClick={() => handleCardClick(product.id)} // Navigate to product detail on card click
+              onClick={() => handleCardClick(product.id)}
             >
               <img
-                src={product.image}
-                alt={product.name}
+                src={product.image || "/placeholder.png"}
+                alt={product.name || "Product"}
                 className="w-full h-40 object-cover object-left-top rounded"
               />
               <h2 className="text-xl font-semibold mt-2">{product.name}</h2>
@@ -76,11 +76,11 @@ useEffect(() => {
                 <p className="text-gray-700">₹{product.price}</p>
                 <span className="text-yellow-500">⭐ {product.rating || "4.5"}</span>
               </div>
-              <div className="mt-3">
+              <div className="mt-3 flex">
                 <button
                   className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
                   onClick={(e) => {
-                    e.stopPropagation(); // Prevent triggering card click when adding to cart
+                    e.stopPropagation();
                     handleAddToCart(product);
                   }}
                 >
@@ -89,7 +89,7 @@ useEffect(() => {
                 <button
                   className="bg-yellow-400 text-black px-4 py-2 rounded ml-2 hover:bg-yellow-300"
                   onClick={(e) => {
-                    e.stopPropagation(); // Prevent triggering card click when saving
+                    e.stopPropagation();
                     console.log("Saved for later", product.name);
                   }}
                 >

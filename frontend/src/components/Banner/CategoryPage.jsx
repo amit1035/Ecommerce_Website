@@ -2,45 +2,43 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const CategoryPage = () => {
-  const { name } = useParams(); // URL se category name milega
+  const { name } = useParams(); // URL will have category slug
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-const BASE_URL = process.env.REACT_APP_API_URL;
+  const BASE_URL = process.env.REACT_APP_API_URL;
 
-useEffect(() => {
-  if (!BASE_URL) {
-    console.error("BASE_URL is not defined. Check your .env file.");
-    return;
-  }
+  useEffect(() => {
+    if (!BASE_URL) {
+      console.error("BASE_URL is not defined. Check your .env file.");
+      return;
+    }
 
-  let isMounted = true; // to prevent state updates if unmounted
+    let isMounted = true; // prevent state updates if unmounted
+    setLoading(true);
 
-  setLoading(true);
+    // Correct endpoint: fetch category by slug, then extract products
+    fetch(`${BASE_URL}/api/categories/${name}`)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (isMounted) {
+          setProducts(data.products || []);
+          setLoading(false);
+        }
+      })
+      .catch(err => {
+        console.error("Error fetching products:", err);
+        if (isMounted) setLoading(false);
+      });
 
-  fetch(`${BASE_URL}/api/categories/${name}/products`)
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-      return res.json();
-    })
-    .then(data => {
-      if (isMounted) {
-        setProducts(data);
-        setLoading(false);
-      }
-    })
-    .catch(err => {
-      console.error("Error fetching products:", err);
-      if (isMounted) setLoading(false);
-    });
-
-  return () => {
-    isMounted = false; // cleanup
-  };
-}, [name, BASE_URL]);
-
-
+    return () => {
+      isMounted = false; // cleanup
+    };
+  }, [name, BASE_URL]);
 
   if (loading) {
     return <p>Loading products...</p>;

@@ -21,34 +21,34 @@ const Header = () => {
 
   const { user, logout } = useAuth();
   const { totalQuantity } = useContext(CartContext);
-const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
+  const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
 
-useEffect(() => {
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch(`${BASE_URL}/api/products`);
-      if (!res.ok) {
-        throw new Error(`Failed to fetch products: ${res.status} ${res.statusText}`);
+  // 🔹 Fetch all products for search
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`${BASE_URL}/api/products`);
+        if (!res.ok) {
+          throw new Error(`Failed to fetch products: ${res.status}`);
+        }
+        const data = await res.json();
+        setProducts(data);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+        setError("Failed to load products.");
+      } finally {
+        setLoading(false);
       }
-      const data = await res.json();
-      setProducts(data);
-    } catch (err) {
-      console.error("Error fetching products:", err);
-      setError("Failed to load products. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
 
-  fetchProducts();
-}, [BASE_URL]);  // ✅ dependency added in case API URL changes
+    fetchProducts();
+  }, [BASE_URL]);
 
-
-  // 🔹 Search filter logic with debounce
+  // 🔹 Debounced search
   useEffect(() => {
     const handler = setTimeout(() => {
-      if (searchTerm.trim() === "") {
+      if (!searchTerm.trim()) {
         setFilteredProducts([]);
         setShowDropdown(false);
         return;
@@ -56,10 +56,8 @@ useEffect(() => {
 
       const filtered = products.filter(
         (product) =>
-          typeof product.name === "string" &&
-          product.name.toLowerCase().includes(searchTerm.toLowerCase())
+          product.name?.toLowerCase().includes(searchTerm.toLowerCase())
       );
-
       setFilteredProducts(filtered);
       setShowDropdown(filtered.length > 0);
     }, 300);
@@ -82,25 +80,24 @@ useEffect(() => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // 🔹 Handle product selection
   const handleProductClick = (product) => {
-    if (!product.id) return;
+    if (!product?.id) return;
     navigate(`/products/${product.id}`);
-    setShowDropdown(false);
     setSearchTerm("");
-    if (isMobileMenuOpen) setIsMobileMenuOpen(false);
+    setShowDropdown(false);
+    setIsMobileMenuOpen(false);
   };
 
   return (
     <header className="flex flex-col sm:flex-row items-center justify-between p-4 bg-white shadow-md relative">
-      {/* 🔹 Logo */}
+      {/* Logo */}
       <div className="text-2xl font-bold text-blue-600 ml-0 sm:ml-12">
         <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
           SwiftCard
         </Link>
       </div>
 
-      {/* 🔹 Search Bar */}
+      {/* Search Bar */}
       <div
         className="flex w-full sm:w-1/2 items-center mx-1 my-1 sm:my-0 relative"
         ref={searchRef}
@@ -108,23 +105,17 @@ useEffect(() => {
         <input
           type="text"
           placeholder={
-            loading
-              ? "Loading products..."
-              : error
-              ? "Error loading products"
-              : "Search for Products, Brands, and More"
+            loading ? "Loading products..." : error ? error : "Search Products"
           }
           className="w-full h-9 p-2 border border-gray-400 rounded-md bg-gray-100 shadow-inner focus:outline-none focus:border-blue-600 transition duration-300 hover:shadow-lg placeholder-gray-400 placeholder-opacity-80"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          onFocus={() => {
-            if (searchTerm.trim() !== "") setShowDropdown(true);
-          }}
-          disabled={loading || error}
+          onFocus={() => searchTerm && setShowDropdown(true)}
+          disabled={loading || !!error}
           spellCheck={false}
         />
 
-        {/* 🔹 Mobile Menu Toggle */}
+        {/* Mobile Menu Toggle */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="text-blue-600 focus:outline-none ml-2 sm:hidden"
@@ -132,7 +123,7 @@ useEffect(() => {
           {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
 
-        {/* 🔹 Dropdown Suggestions */}
+        {/* Dropdown Suggestions */}
         {showDropdown && (
           <ul className="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-md max-h-48 overflow-y-auto z-50 shadow-xl scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
             {filteredProducts.length > 0 ? (
@@ -153,14 +144,14 @@ useEffect(() => {
               ))
             ) : (
               <li className="px-4 py-2 text-gray-500 select-none">
-                No available products found
+                No products found
               </li>
             )}
           </ul>
         )}
       </div>
 
-      {/* 🔹 Navigation & User */}
+      {/* Navigation & User */}
       <nav
         className={`flex-col sm:flex-row items-center sm:space-x-4 ${
           isMobileMenuOpen ? "flex" : "hidden"
@@ -190,7 +181,7 @@ useEffect(() => {
           )}
         </div>
 
-        {/* 🔹 Cart */}
+        {/* Cart */}
         <Link
           to="/cart"
           onClick={() => setIsMobileMenuOpen(false)}
@@ -205,7 +196,7 @@ useEffect(() => {
           Cart
         </Link>
 
-        {/* 🔹 Become a Seller */}
+        {/* Become a Seller */}
         <button
           onClick={() => setIsMobileMenuOpen(false)}
           className="px-4 py-2 text-blue-600 hover:bg-gray-200 rounded-md"

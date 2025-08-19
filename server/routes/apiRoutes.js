@@ -1,4 +1,3 @@
-// routes/api.js
 const express = require("express");
 const router = express.Router();
 
@@ -8,13 +7,15 @@ const { bannerItems, clearanceItems } = require("../data/productsDatainfo");
 
 // Helper: Full image URL
 const getImageUrl = (req, imagePath) =>
-  imagePath.startsWith("http")
+  imagePath && imagePath.startsWith("http")
     ? imagePath
-    : `${req.protocol}://${req.get("host")}/images/${imagePath}`;
+    : imagePath
+      ? `${req.protocol}://${req.get("host")}/images/${imagePath}`
+      : null;
 
 // Helper: Slug normalize
 const normalizeSlug = (str) =>
-  str.toLowerCase().trim().replace(/\s+/g, "-");
+  str ? str.toLowerCase().trim().replace(/\s+/g, "-") : "";
 
 // ================================
 // HOME PAGE DATA (Banner + Clearance)
@@ -48,8 +49,7 @@ router.get("/categories/:slug", (req, res) => {
   const param = normalizeSlug(req.params.slug);
 
   const category = categoriesData.find(
-    cat =>
-      normalizeSlug(cat.slug || cat.name) === param
+    cat => normalizeSlug(cat.slug || cat.name) === param
   );
 
   if (!category) return res.status(404).json({ error: "Category not found" });
@@ -81,7 +81,9 @@ router.get("/products", (req, res) => {
 });
 
 router.get("/products/:id", (req, res) => {
-  const productId = parseInt(req.params.id);
+  const productId = parseInt(req.params.id, 10);
+  if (isNaN(productId)) return res.status(400).json({ error: "Invalid product ID" });
+
   let foundProduct = null;
 
   for (const [category, products] of Object.entries(productData)) {

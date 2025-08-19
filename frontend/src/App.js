@@ -18,44 +18,41 @@ import CompleteLogin from './components/Login/CompleteLogin';
 import Logout from './components/Login/profile_details/logout';
 import ProductDetail from './components/product/product_Details';
 import CategoryPage from './components/Banner/CategoryPage';
-const Home = () => {
-  return (
-    <div>
-      <Category />
-      <Features />
-      <Banner />
-    </div>
-  );
-};
 
-const App = () => {
-  return (
-    <Router>
-      <CartProvider>
-        <div className="App">
-          <Header />
-          <Routes>
-            <Route path="*" element={<Home />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/banner" element={<Banner />} />
-            <Route path="/features" element={<Features />} />
-            <Route path="/about" element={<About />} />
-            <Route path='/Privacy' element={<Privacy/>} />
-            <Route path='/PlaceOrder' element ={<PlaceOrder/>} />
-            <Route path="/category/:name" element={<CategoryDetail />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path='/otp' element ={<Otp />} />
-            <Route path='/Completelogin' element ={<CompleteLogin />} />
-            <Route path='/logout' element ={<Logout />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/category/:categoryName" element={<CategoryPage /> } />
-           </Routes>
-          <Footer />
-        </div>
-      </CartProvider>
-    </Router>
-  );
-};
+const Home = () => (
+  <div>
+    <Category />
+    <Features />
+    <Banner />
+  </div>
+);
+
+const App = () => (
+  <Router>
+    <CartProvider>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="*" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/banner" element={<Banner />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/place-order" element={<PlaceOrder />} />
+          <Route path="/category/:name" element={<CategoryDetail />} />
+          <Route path="/category-page/:categoryName" element={<CategoryPage />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/otp" element={<Otp />} />
+          <Route path="/complete-login" element={<CompleteLogin />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+        </Routes>
+        <Footer />
+      </div>
+    </CartProvider>
+  </Router>
+);
 
 export default App;

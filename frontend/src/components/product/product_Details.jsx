@@ -3,8 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import { CartContext } from "../Context/CartContext";
 
-// ✅ Define BASE_URL once, outside the component
-const BASE_URL = process.env.REACT_APP_API_URL;
+const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -18,31 +17,32 @@ const ProductDetail = () => {
   const [selectedSize, setSelectedSize] = useState("M");
 
   useEffect(() => {
-    if (id) {
-      fetch(`${BASE_URL}/api/products/${id}`)
-        .then((res) => {
-          if (!res.ok) throw new Error("Failed to fetch product");
-          return res.json();
-        })
-        .then((data) => {
-          setProduct(data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          setError(err.message);
-          setLoading(false);
-        });
-    }
-  }, [id]); // ✅ BASE_URL is static, no need in deps
+    if (!id) return;
+
+    const fetchProduct = async () => {
+      try {
+        const res = await fetch(`${BASE_URL}/api/products/${id}`);
+        if (!res.ok) throw new Error("Failed to fetch product");
+        const data = await res.json();
+        setProduct(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
 
   const handleAddToCart = () => {
     if (!product) return;
 
     addToCart({
       id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
+      name: product.name || "Product",
+      price: parseFloat(product.price) || 0,
+      image: product.image || "/images/placeholder.png",
       discount: product.discount || 0,
       quantity,
       size: selectedSize,
@@ -52,18 +52,7 @@ const ProductDetail = () => {
   };
 
   const handleBuyNow = () => {
-    if (!product) return;
-
-    addToCart({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-      discount: product.discount || 0,
-      quantity,
-      size: selectedSize,
-    });
-
+    handleAddToCart();
     navigate("/checkout");
   };
 
@@ -98,8 +87,8 @@ const ProductDetail = () => {
     return <p className="text-center text-lg font-semibold">Product not found.</p>;
   }
 
-  const ratingStars = 4;
-  const reviewCount = 120;
+  const ratingStars = Math.round(product.rating) || 4;
+  const reviewCount = product.reviews || 120;
 
   return (
     <div className="container mx-auto p-6 max-w-5xl">
@@ -110,7 +99,7 @@ const ProductDetail = () => {
       <div className="flex flex-col md:flex-row gap-6">
         <div className="flex-1">
           <img
-            src={product.image}
+            src={product.image || "/images/placeholder.png"}
             alt={product.name}
             className="w-full h-[400px] object-contain rounded shadow"
             onError={(e) => {
